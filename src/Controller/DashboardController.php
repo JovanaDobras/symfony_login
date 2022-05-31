@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,8 +23,10 @@ class DashboardController extends AbstractController
 
 
     #[Route('/admin', name: 'admin')]
-    public function adminAll(){
+    public function adminAll(UserRepository $ur){
 
+        $user = $ur->findAll();
+        
         return $this->render('dashboard/admin.html.twig');
     }
 
